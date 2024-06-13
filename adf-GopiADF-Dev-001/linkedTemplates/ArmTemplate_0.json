@@ -81,7 +81,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
+						"name": "Copy data input_to_output",
+						"description": "Copy data input_to_output",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -91,13 +92,19 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
+						"userProperties": [
+							{
+								"name": "testProp",
+								"value": "testValue"
+							}
+						],
 						"typeProperties": {
 							"source": {
 								"type": "BinarySource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
+									"recursive": true,
+									"deleteFilesAfterCompletion": false
 								},
 								"formatSettings": {
 									"type": "BinaryReadSettings"
@@ -106,10 +113,17 @@
 							"sink": {
 								"type": "BinarySink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobStorageWriteSettings",
+									"metadata": [
+										{
+											"name": "inputdata",
+											"value": "img copy"
+										}
+									]
 								}
 							},
-							"enableStaging": false
+							"enableStaging": false,
+							"preserve": []
 						},
 						"inputs": [
 							{
